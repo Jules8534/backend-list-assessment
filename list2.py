@@ -23,12 +23,19 @@ Kenzie assignment: List2
 
 
 def remove_adjacent(nums):
-    i = 1
-    while i < len(nums):
-        if nums[i] == nums [i-1]:
-           nums.pop(i)
-        i += 1 
-    return nums
+    res = []
+    for el in nums:
+        if res:
+            if res[-1] != el:
+                res.append(el)
+        else:
+                res.append(el)
+
+    # while i < len(nums):
+    #     if nums[i] == nums [i-1]:
+    #        nums.pop(i)
+    #     i += 1 
+    return res
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -37,11 +44,26 @@ def remove_adjacent(nums):
 # Hint: Don't use `sort` or `sorted` -- they are not O(n) linear time, and the two lists
 # are already provided in ascending sorted order.
 def linear_merge(list1, list2):
-    result = []
+    res = []
     while len(list1) and len(list2):
-        result.append((list1 if list1[-1] > list2[-1] else list2).pop(-1))
-    result += list1 if len(list1) else list2
-    return result[-1::-1]
+        if list1[0] < list2[0]:
+            el = list1[0]
+            list1 = list1[1:]
+        else:
+            el = list2[0]
+            list2 = list2[2:]
+        res.append(el)
+    while len(list1):
+        res.append(list1[0])
+        list1 = list1[1:]
+    while len(list2):
+        res.append(list2[0])
+        list2 = list2[1:]
+    return res
+
+    #     result.append((list1 if list1[-1] > list2[-1] else list2).pop(-1))
+    # result += list1 if len(list1) else list2
+    # return result[-1::-1]
 
 
 # Simple provided test() function used in main() to print
