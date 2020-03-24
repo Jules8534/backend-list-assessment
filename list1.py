@@ -44,17 +44,14 @@ def front_x(words):
     startswith_x =[]
     not_startwith_x = []
     for word in words:
-        if word in words:
+        if word.startswith("x"):
             startswith_x.append(word)
         else:
             not_startwith_x.append(word)
-    words = []
+    # words = []
     startswith_x = sorted(startswith_x)
     not_startwith_x = sorted(not_startwith_x)
-    for word in startswith_x:
-        words.append(word)
-    for word in not_startwith_x:
-        words.append(word)
+    words = startswith_x + not_startwith_x
     return words
 
 
